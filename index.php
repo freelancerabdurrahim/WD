@@ -1,3 +1,4 @@
+<?php
 function calculateGrade($marks) {
     if ($marks >= 60) {
         return 'First Division';
@@ -10,7 +11,6 @@ function calculateGrade($marks) {
     }
 }
 
-// Example usage
 $studentMarks = 75;
 $studentGrade = calculateGrade($studentMarks);
 echo "Student marks: $studentMarks\n";
