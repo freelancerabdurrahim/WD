@@ -11,19 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            
-            // F - K
-            $table->unsignedBigInteger('product_id')->unique();
-
-            // Relationship
-            $table->foreign('product_id')->references('id')->on('products')
-            ->restrictOnDelete()
-            ->restrictOnUpdate();
-
-            $table->integer('quantity');
-
+            $table->string('name');
+            $table->unsignedBigInteger('article_id');
+            $table->text('message');
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('comments');
     }
 };
